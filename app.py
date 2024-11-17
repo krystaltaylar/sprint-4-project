@@ -4,7 +4,7 @@ import altair as alt
 import plotly.express as px 
 from scipy import stats 
 
-df = pd.read_csv("vehicles_us.csv")
+df = pd.read_csv("notebooks/vehicles_us.csv")
 
 # Add a header
 st.header("Exploratory Data Analysis of Vehicles Dataset")
