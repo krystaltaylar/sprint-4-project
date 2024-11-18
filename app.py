@@ -14,6 +14,8 @@ show_histogram = st.checkbox('Show Average Price by Fuel and Transmission Type (
 
 if show_histogram:
     # Create a Plotly Express histogram
+    price_gas_transmission = df.groupby(['fuel', 'transmission']).agg({'price': 'mean'}).reset_index()
+    gas_hybrid_electric_df = df[(df['fuel'].isin(['gas', 'hybrid', 'electric'])) & (df['transmission']=='automatic')]
     fig_hist =  px.histogram(gas_hybrid_electric_df,
                         x='price', 
                         color='fuel',
