@@ -10,16 +10,21 @@ df = pd.read_csv("notebooks/vehicles_us.csv")
 st.header("Exploratory Data Analysis of Vehicles Dataset")
 
 # Display a checkbox to show/hide a histogram
-show_histogram = st.checkbox('Show Price Distribution Histogram')
+show_histogram = st.checkbox('Show Average Price by Fuel and Transmission Type (Automatic) Histogram')
 
 if show_histogram:
-    # Create a Plotly Express histogram for 'price'
-    fig_hist =  px.histogram(df,
-                      x='price',
-                      labels={'price':'Price (USD)', 'condition':'Condition'},
-                      color='condition',
-                      title='Distribution of Prices')
-    fig_hist.update_layout(yaxis_title='Amount')
+    # Create a Plotly Express histogram
+    fig_hist =  px.histogram(gas_hybrid_electric_df,
+                        x='price', 
+                        color='fuel',
+                        labels={
+                            'fuel': 'Fuel Type',
+                            'price': 'Average Price (USD)'
+                        },
+                        title='Average Price by Fuel and Transmission Type (Automatic)',
+                        opacity=0.9,
+                        nbins=300) 
+    fig_hist.update_layout(yaxis_title='Count')
     st.plotly_chart(fig_hist)  # Display the histogram in Streamlit
 
 # Display a checkbox to show/hide a scatter plot
